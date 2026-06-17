@@ -9,7 +9,7 @@ export default function List() {
   const [task, setTask] = useState([]);
 
   const getListData = async () => {
-    let list = await fetch("http://localhost:3002/task-list");
+    let list = await fetch("https://todo-backend-j2iq.onrender.com/task-list");
     list = await list.json();
     if (list.success) {
       setTask(list.result);
@@ -21,9 +21,12 @@ export default function List() {
   }, []);
 
   const handleDeteleTask = async (id) => {
-    let deleteTask = await fetch("http://localhost:3002/delete/" + id, {
-      method: "DELETE",
-    });
+    let deleteTask = await fetch(
+      "https://todo-backend-j2iq.onrender.com/delete/" + id,
+      {
+        method: "DELETE",
+      },
+    );
     deleteTask = await deleteTask.json();
     if (deleteTask.success) {
       getListData();

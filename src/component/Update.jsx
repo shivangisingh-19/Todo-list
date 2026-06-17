@@ -10,7 +10,9 @@ export default function Update() {
   const navigate = useNavigate();
 
   const getTaskFetch = async (id) => {
-    let editTask = await fetch(`http://localhost:3002/task/` + id);
+    let editTask = await fetch(
+      `https://todo-backend-j2iq.onrender.com/task/` + id,
+    );
     editTask = await editTask.json();
     if (editTask.result) {
       setTask(editTask.result);
@@ -23,13 +25,16 @@ export default function Update() {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    let updatedTask = await fetch("http://localhost:3002/update-task", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
+    let updatedTask = await fetch(
+      "https://todo-backend-j2iq.onrender.com/update-task",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task),
       },
-      body: JSON.stringify(task),
-    });
+    );
     updatedTask = await updatedTask.json();
     if (updatedTask) {
       navigate("/");

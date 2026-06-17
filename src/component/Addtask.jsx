@@ -11,13 +11,16 @@ export default function Addtask() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(task);
-    let result = await fetch("http://localhost:3002/add-task", {
-      method: "POST",
-      body: JSON.stringify(task),
-      headers: {
-        "Content-Type": "Application/JSON",
+    let result = await fetch(
+      "https://todo-backend-j2iq.onrender.com/add-task",
+      {
+        method: "POST",
+        body: JSON.stringify(task),
+        headers: {
+          "Content-Type": "Application/JSON",
+        },
       },
-    });
+    );
     result = await result.json();
     if (result) {
       navigate("/");
